@@ -74,6 +74,12 @@
             border-color: var(--brand-dark);
         }
     </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Form handling moved to the bottom script to integrate with validation.
+        });
+    </script>
 </head>
 
 <body>
@@ -121,7 +127,8 @@
         <div class="row-gap-2"></div>
         <section>
             <div class="d-grid">
-                <button type="button" class="btn btn-primary btn-lg" onclick="location.href='http://192.168.0.242/FUSION/plm.html'">Home</button>
+                <button type="button" class="btn btn-primary btn-lg"
+                    onclick="location.href='http://192.168.0.242/FUSION/plm.html'">Home</button>
             </div>
         </section>
     </main>
@@ -135,7 +142,7 @@
     <script>
         // small enhancement: set current year
         try { document.getElementById('year').textContent = new Date().getFullYear(); } catch (e) { }
-        // Basic client-side validation visual feedback
+        // Basic client-side validation visual feedback + open target page with query args
         (function () {
             'use strict';
             var forms = document.querySelectorAll('.needs-validation');
@@ -144,6 +151,31 @@
                     if (!form.checkValidity()) {
                         event.preventDefault();
                         event.stopPropagation();
+                    } else {
+                        event.preventDefault();
+                        // gather values
+                        var opencode = document.getElementById('opencode').value.trim();
+                        if (opencode === '') {
+                            alert('Per favore, inserisci un codice prima di cercare.');
+                            form.classList.add('was-validated');
+                            return;
+                        }
+                        var addin = document.querySelector('input[name="AddinCmd"]:checked');
+                        var addinVal = addin ? addin.value : '';
+                        var clientID = document.getElementById('ClientID').value;
+                        var locale = document.getElementById('locale').value;
+                        var IISIDX = document.getElementById('IISIDX').value;
+                        var contextID = document.getElementById('contextID').value;
+                        var base = 'http://192.168.0.242/FUSION/plm.html';
+                        var params = new URLSearchParams();
+                        params.set('opencode', opencode);
+                        if (addinVal) params.set('AddinCmd', addinVal);
+                        if (clientID) params.set('ClientID', clientID);
+                        if (locale) params.set('locale', locale);
+                        if (IISIDX) params.set('IISIDX', IISIDX);
+                        if (contextID) params.set('contextID', contextID);
+                        // open result in a new tab (change to '_self' to reuse same tab)
+                        window.open(base + (base.indexOf('?') === -1 ? '?' : '&') + params.toString(), '_blank');
                     }
                     form.classList.add('was-validated');
                 }, false);

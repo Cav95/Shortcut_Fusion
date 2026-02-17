@@ -131,6 +131,11 @@
                     onclick="location.href='http://192.168.0.242/FUSION/plm.html'">Home</button>
             </div>
         </section>
+                <section>
+            <div class="d-grid">
+                <button type="button" class="btn btn-primary btn-lg" onclick="download()">Scarica</button>
+            </div>
+        </section>
     </main>
 
     <footer class="container-fluid bg-light py-3 mt-auto" role="contentinfo">
@@ -181,6 +186,12 @@
                 }, false);
             });
         })();
+
+        function download() {
+            // Apri getFile.php in una nuova scheda per avviare il download
+            // Se il server invia intestazioni di download corrette, questa azione scarica il file.
+            window.open('getFile.php', '_blank');
+        }
     </script>
 </body>
 

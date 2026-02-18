@@ -188,9 +188,35 @@
         })();
 
         function download() {
-            // Apri getFile.php in una nuova scheda per avviare il download
-            // Se il server invia intestazioni di download corrette, questa azione scarica il file.
-            window.open('getFile.php', '_blank');
+            let code = document.getElementById('opencode').value.trim();
+            if (code === '') {
+                alert('Per favore, inserisci un codice prima di scaricare.');
+                return;
+            }
+            let dbCode = fetch('api-getcode.php?code=' + encodeURIComponent(code))
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Errore nella richiesta: ' + response.status);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.length === 0) {
+                        alert('Nessun risultato trovato per il codice inserito.');
+                        return;
+                    }
+                    // Assuming the API returns an array of results, we take the first one
+                    let fileCode = data[0].linkCodice; // Adjust this if your API returns a different structure
+                    window.open('getFile.php?code=' + encodeURIComponent(fileCode), '_blank');
+                })
+                .catch(error => {
+                    console.error('Errore:', error);
+                    alert('Si è verificato un errore durante il download. Per favore riprova.');
+                });
+            
+            window.open('getFile.php?code=' + encodeURIComponent(code), '_blank');
+            console.log("success");
+            
         }
     </script>
 </body>

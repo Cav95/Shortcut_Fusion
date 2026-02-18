@@ -1,10 +1,21 @@
 <?php
 // Percorso della cartella dove si trovano i file
-$baseDir = __DIR__; // Modifica questo percorso se necessario
+$baseDir = "Z:\\Root"; // Modifica questo percorso se necessario
 
+if(isset($_GET['code'])) {
+    $code = $_GET['code']['linkCodice'];
+    $PATH = $_GET['code']['linkPath'];
+    // Puoi aggiungere qui la logica per verificare il codice e associare il file corretto
+    // Ad esempio, potresti avere una mappatura tra codici e file
+    // $filePath = getFilePathFromCode($code);
+} else {
+    http_response_code(400);
+    exit('Errore: parametro "code" mancante.');
+}
 // Percorso relativo al file nella cartella mockup (aggiorna se necessario)
-$relativePath = '\FAP01318.pdf'; // Sostituisci con il nome del file che vuoi scaricare
+$relativePath = '/' .$PATH . '/' . $code . '.pdf'; // Sostituisci con il nome del file che vuoi scaricare
 $filePath = $baseDir . $relativePath;
+
 
 // Risolvo il percorso reale (se il file non esiste, realpath ritorna false)
 $realPath = realpath($filePath);

@@ -12,6 +12,8 @@ if(isset($_GET['code']) && isset($_GET['path'])) {
 // Percorso relativo al file nella cartella mockup (aggiorna se necessario)
 $relativePath = '/' .$path . '/' . $code . '.pdf'; // Sostituisci con il nome del file che vuoi scaricare
 $filePath = $baseDir . $relativePath;
+    http_response_code(404);
+    exit('Errore: file non trovato.' . $filePath);
 
 // Risolvo il percorso reale (se il file non esiste, realpath ritorna false)
 $realPath = realpath($filePath);

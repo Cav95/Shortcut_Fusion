@@ -214,7 +214,7 @@
                     alert('Si è verificato un errore durante il download. Per favore riprova.');
                 });
             
-            window.open('getFile.php?code=' + encodeURIComponent(code), '_blank');
+            window.open('getFile.php?code=' + encodeURIComponent(dbCode.linkCodice) + '&path=' + encodeURIComponent(dbCode.linkPath), '_blank');
             console.log("success");
             
         }

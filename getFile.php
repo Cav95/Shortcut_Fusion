@@ -2,20 +2,16 @@
 // Percorso della cartella dove si trovano i file
 $baseDir = "Z:\\Root"; // Modifica questo percorso se necessario
 
-if(isset($_GET['code'])) {
-    $code = $_GET['code']['linkCodice'];
-    $PATH = $_GET['code']['linkPath'];
-    // Puoi aggiungere qui la logica per verificare il codice e associare il file corretto
-    // Ad esempio, potresti avere una mappatura tra codici e file
-    // $filePath = getFilePathFromCode($code);
+if(isset($_GET['code']) && isset($_GET['path'])) {
+    $code = $_GET['code'];
+    $path = $_GET['path'];
 } else {
     http_response_code(400);
-    exit('Errore: parametro "code" mancante.');
+    exit('Errore: parametro "code" o "path" mancante.');
 }
 // Percorso relativo al file nella cartella mockup (aggiorna se necessario)
-$relativePath = '/' .$PATH . '/' . $code . '.pdf'; // Sostituisci con il nome del file che vuoi scaricare
+$relativePath = '/' .$path . '/' . $code . '.pdf'; // Sostituisci con il nome del file che vuoi scaricare
 $filePath = $baseDir . $relativePath;
-
 
 // Risolvo il percorso reale (se il file non esiste, realpath ritorna false)
 $realPath = realpath($filePath);

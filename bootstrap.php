@@ -21,5 +21,6 @@ try {
     echo "Connessione PDO stabilita con successo al DBSRV02!";
     
 } catch(PDOException $e) {
-    die("Errore di connessione: " . $e->getMessage());
+    http_response_code(500);
+    exit('Errore di connessione: ' . $e->getMessage());
 }

@@ -21,7 +21,7 @@
     <main id="main-content" class="container my-4" role="main">
         <section aria-labelledby="search-form-heading">
             <h2 id="search-form-heading" class="h5">Ricerca PDM</h2>
-            <form action="http://192.168.0.242/FUSION/plm.html" method="get" class="needs-validation" novalidate
+            <form action="openPDM.php" method="get" class="needs-validation" novalidate
                 aria-describedby="search-desc">
                 <p id="search-desc" class="visually-hidden">Compila il codice o seleziona il tipo di ricerca e premi
                     Cerca.</p>
@@ -30,11 +30,6 @@
                     <input type="text" name="opencode" id="opencode" class="form-control" placeholder="Inserisci codice"
                         aria-label="Codice">
                 </div>
-
-                <input type="hidden" name="ClientID" id="ClientID" value="8604d71f-eac9-4f70-928a-cb146295152c">
-                <input type="hidden" name="locale" id="locale" value="it">
-                <input type="hidden" name="IISIDX" id="IISIDX" value="0">
-                <input type="hidden" name="contextID" id="contextID" value="hrboomomfa">
 
                 <fieldset class="mb-3">
                     <legend class="col-form-label">Tipo</legend>

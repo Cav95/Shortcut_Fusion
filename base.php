@@ -76,7 +76,7 @@
     </style>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             // Form handling moved to the bottom script to integrate with validation.
         });
     </script>
@@ -131,7 +131,7 @@
                     onclick="location.href='http://192.168.0.242/FUSION/plm.html'">Home</button>
             </div>
         </section>
-                <section>
+        <section>
             <div class="d-grid">
                 <button type="button" class="btn btn-primary btn-lg" onclick="download()">Scarica</button>
             </div>
@@ -146,13 +146,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // small enhancement: set current year
-        try { document.getElementById('year').textContent = new Date().getFullYear(); } catch (e) { }
+        try {
+            document.getElementById('year').textContent = new Date().getFullYear();
+        } catch (e) {}
         // Basic client-side validation visual feedback + open target page with query args
-        (function () {
+        (function() {
             'use strict';
             var forms = document.querySelectorAll('.needs-validation');
-            Array.prototype.slice.call(forms).forEach(function (form) {
-                form.addEventListener('submit', function (event) {
+            Array.prototype.slice.call(forms).forEach(function(form) {
+                form.addEventListener('submit', function(event) {
                     if (!form.checkValidity()) {
                         event.preventDefault();
                         event.stopPropagation();

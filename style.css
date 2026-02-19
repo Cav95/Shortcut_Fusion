@@ -1,0 +1,65 @@
+        :root {
+            --brand: #0d6efd;
+            --brand-dark: #0b5ed7;
+            --bg: #ffffff;
+            --text: #0b1a2b;
+            --accent: #0d6efd;
+        }
+
+        /* Visible skip link on focus */
+        .skip-link {
+            position: absolute;
+            left: -999px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+
+        .skip-link:focus {
+            position: static;
+            width: auto;
+            height: auto;
+            padding: .5rem 1rem;
+            background: var(--brand);
+            color: #fff;
+            z-index: 1000;
+            border-radius: .25rem;
+            margin: .5rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        /* Focus-visible friendly outline */
+        :focus-visible {
+            outline: 3px solid Highlight;
+            outline-offset: 2px;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-size: 1rem;
+            /* mobile-first base */
+            line-height: 1.4;
+        }
+
+        .brand-heading {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        /* Larger touch targets */
+        .btn,
+        .form-control,
+        .form-check-input {
+            min-height: 44px;
+            padding: .5rem .75rem;
+            margin: 5px 0;
+        }
+
+        /* Ensure contrast for primary button */
+        .btn-primary {
+            background-color: var(--brand);
+            border-color: var(--brand-dark);
+        }

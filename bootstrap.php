@@ -11,8 +11,7 @@ try {
     
     // Imposta la modalità di errore di PDO per lanciare eccezioni
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    echo "Connessione PDO stabilita con successo al DBSRV02!";
+    // Non inviare output di debug: restituiamo solo dati nelle API.
     
 } catch(PDOException $e) {
     http_response_code(500);
